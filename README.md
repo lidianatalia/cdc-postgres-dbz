@@ -53,7 +53,7 @@ curl -X DELETE http://debezium:8083/connectors/db_test-connector
 ### Verify Connector
 ```bash
 curl -s \
-  http://debezium:8083/connectors/exampledb-connector/status \
+  http://debezium:8083/connectors/db_test-connector/status \
   | jq
 ```
 
@@ -61,6 +61,6 @@ curl -s \
 Check connector status
 ```bash
 curl -s \
-  http://debezium:8083/connectors/exampledb-connector/status \
+  http://debezium:8083/connectors/db_test-connector/status \
   | jq
 ```
