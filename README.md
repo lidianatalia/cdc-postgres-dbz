@@ -43,7 +43,7 @@ curl -i \
   -H "Accept:application/json" \
   -H "Content-Type:application/json" \
   http://debezium:8083/connectors/ \
-  --data @/workspace/source/postgres.json
+  --data @/workspace/source/db_test.json
 ```
 
 ### Delete the connector
