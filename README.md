@@ -21,6 +21,13 @@ This project demonstrates Change Data Capture (CDC) from PostgreSQL to Kafka usi
 ┌──────────────────────┐
 │        Kafka         │
 └──────────────────────┘
+           │
+           │ (Optional) Sink
+           ▼
+┌──────────────────────┐
+│          S3          │
+└──────────────────────┘
+
 ```
 
 ### Pre-requisites
@@ -36,24 +43,36 @@ FOR ALL TABLES;
 ```
 
 ### Deploy the Connector
+Source Connector:
 ```bash
 curl -i \
   -X POST \
   -H "Accept:application/json" \
   -H "Content-Type:application/json" \
   http://debezium:8083/connectors/ \
-  --data @/workspace/source/db_test.json
+  --data @/workspace/source/postgres/db_test.json
 ```
+
+(Optional) Sink Connector:
+```bash
+curl -i \
+  -X POST \
+  -H "Accept:application/json" \
+  -H "Content-Type:application/json" \
+  http://debezium:8083/connectors/ \
+  --data @/workspace/sink/s3/db_test.json
+```
+
 
 ### Delete the connector
 ```bash
-curl -X DELETE http://debezium:8083/connectors/db_test-connector
+curl -X DELETE http://debezium:8083/connectors/postgres-debezium-source-connector
 ```
 
 ### Verify Connector
 ```bash
 curl -s \
-  http://debezium:8083/connectors/db_test-connector/status \
+  http://debezium:8083/connectors/postgres-debezium-source-connector/status \
   | jq
 ```
 

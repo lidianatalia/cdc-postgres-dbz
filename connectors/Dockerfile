@@ -12,5 +12,6 @@ ARG WORKSPACE_HOME=/workspace
 WORKDIR $WORKSPACE_HOME
 
 COPY source $WORKSPACE_HOME/source
+COPY sink $WORKSPACE_HOME/sink
 
 CMD ["bash"]
