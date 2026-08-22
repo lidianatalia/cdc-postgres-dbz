@@ -1,0 +1,41 @@
+version: "3.7"
+services:
+  postgres:
+    image: debezium/postgres:17
+    ports:
+      - 5432:5432
+    env_file:
+      - .env.postgres
+
+  broker-cdc-1:
+    image: apache/kafka:4.3.1
+    container_name: broker-cdc-1
+    env_file:
+      - .env.kafka
+    ports:
+      - 9092:9092
+
+  debezium:
+    image: debezium/connect:2.6
+    container_name: debezium
+    volumes:
+      - vol-debezium-logs:/kafka/logs
+    depends_on:
+      - broker-cdc-1
+      - postgres
+    env_file:
+      - .env.debezium
+    ports:
+      - 8083:8083
+
+  connectors:
+    build: ./connectors/
+    container_name: connectors
+    links:
+      - debezium
+    depends_on:
+      - debezium
+    entrypoint: ["sleep", "infinity"]
+
+volumes:
+  vol-debezium-logs:

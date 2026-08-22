@@ -1,0 +1,22 @@
+{
+  "name": "db_test-connector",
+  "config": {
+    "tasks.max":1,
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "plugin.name": "pgoutput",
+    "database.hostname": "postgres",
+    "database.port": "5432",
+    "database.user": "user",
+    "database.password": "user123",
+    "database.dbname": "db_test",
+    "slot_name":"cdc_db_test",
+    "publication":"cdc_db_test",
+    "table.include.list": "public.students",
+    "topic.prefix":"db_test",
+    "heartbeat.interval":900000,
+    "heartbeat.action.query":"update _heartbeat set heartbeat=current_timestamp",
+    "snapshot.mode":"initial",
+    "key.converter":"org.apache.kafka.connect.json.JsonConverter",
+    "value.converter":"org.apache.kafka.connect.json.JsonConverter"
+  }
+}
