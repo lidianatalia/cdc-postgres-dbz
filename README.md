@@ -1,7 +1,3 @@
-# cdc-postgres-dbz
-Change Data Capture with Posgres and Debezium
-
-
 # PostgreSQL → Debezium → Kafka CDC
 
 This project demonstrates Change Data Capture (CDC) from PostgreSQL to Kafka using Debezium.
