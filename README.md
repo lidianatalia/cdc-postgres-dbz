@@ -30,7 +30,6 @@ ALTER TABLE public.students REPLICA IDENTIY FULL;
 ```
 
 #### Create a Debezium Publication
-Create a publication for all tables:
 ```bash
 CREATE PUBLICATION cdc_db_test
 FOR ALL TABLES;
