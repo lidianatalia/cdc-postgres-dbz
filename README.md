@@ -5,13 +5,12 @@ This project demonstrates Change Data Capture (CDC) from PostgreSQL to Kafka usi
 ## Architecture
 
 ```text
-┌──────────────┐
-│  PostgreSQL  │
-└──────┬───────┘
-       │
-       │ Logical Replication
-       │
-       ▼
+┌──────────────────────┐
+│      PostgreSQL      │
+└──────────┬───────────┘
+           │
+           │ Logical Replication
+           ▼
 ┌──────────────────────┐
 │       Debezium       │
 └──────────┬───────────┘
