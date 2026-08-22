@@ -58,9 +58,23 @@ curl -s \
 ```
 
 ### Troubleshooting
-Check connector status
+Check Kafka topics:
 ```bash
-curl -s \
-  http://debezium:8083/connectors/db_test-connector/status \
-  | jq
+kcat -b broker-cdc-1:9092 -L
+```
+
+Check Debezium logs:
+```bash
+docker logs debezium --tail 200
+```
+
+Check PostgreSQL:
+```bash
+SHOW wal_level;
+
+SELECT *
+FROM pg_replication_slots;
+
+SELECT pubname, puballtables
+FROM pg_publication;
 ```
